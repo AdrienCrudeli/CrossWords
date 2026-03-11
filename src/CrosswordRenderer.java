@@ -1,10 +1,7 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class CrosswordRenderer {
     public String renderComplete(CrosswordPuzzle puzzle) {
         int leftWidth = maxLeftWidth(puzzle.getRows());
-        List<String> lines = new ArrayList<>();
+        DynamicArray<String> lines = new DynamicArray<>();
         for (CrosswordRow row : puzzle.getRows()) {
             String word = row.getEntry().getWord();
             int crossingIndex = row.getCrossingIndex();
@@ -21,7 +18,7 @@ public class CrosswordRenderer {
     public String renderBlurredWithDescriptions(CrosswordPuzzle puzzle) {
         int leftWidth = maxLeftWidth(puzzle.getRows());
 
-        List<String> boardLines = new ArrayList<>();
+        DynamicArray<String> boardLines = new DynamicArray<>();
         int maxBoardWidth = 0;
         for (CrosswordRow row : puzzle.getRows()) {
             String word = row.getEntry().getWord();
@@ -35,7 +32,7 @@ public class CrosswordRenderer {
             maxBoardWidth = Math.max(maxBoardWidth, boardLine.length());
         }
 
-        List<String> output = new ArrayList<>();
+        DynamicArray<String> output = new DynamicArray<>();
         for (int i = 0; i < puzzle.getRows().size(); i++) {
             CrosswordRow row = puzzle.getRows().get(i);
             String boardLine = boardLines.get(i);
@@ -46,7 +43,7 @@ public class CrosswordRenderer {
         return String.join(System.lineSeparator(), output);
     }
 
-    private int maxLeftWidth(List<CrosswordRow> rows) {
+    private int maxLeftWidth(DynamicArray<CrosswordRow> rows) {
         int max = 0;
         for (CrosswordRow row : rows) {
             max = Math.max(max, row.getCrossingIndex());

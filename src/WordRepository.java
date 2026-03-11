@@ -1,15 +1,13 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class WordRepository {
     public WordData load(String wordsFile, String descriptionsFile) throws IOException {
-        List<String> words = readLines(wordsFile);
-        List<String> descriptions = readLines(descriptionsFile);
+        DynamicArray<String> words = readLines(wordsFile);
+        DynamicArray<String> descriptions = readLines(descriptionsFile);
 
-        List<WordEntry> entries = new ArrayList<>();
+        DynamicArray<WordEntry> entries = new DynamicArray<>();
         for (int i = 0; i < words.size(); i++) {
             String word = words.get(i).trim();
             String description = descriptions.get(i).trim();
@@ -20,8 +18,8 @@ public class WordRepository {
         return new WordData(entries);
     }
 
-    private List<String> readLines(String filePath) throws IOException {
-        List<String> lines = new ArrayList<>();
+    private DynamicArray<String> readLines(String filePath) throws IOException {
+        DynamicArray<String> lines = new DynamicArray<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {

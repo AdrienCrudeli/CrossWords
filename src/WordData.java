@@ -1,13 +1,11 @@
-import java.util.List;
-
 public class WordData {
-    private final List<WordEntry> entries;
+    private final DynamicArray<WordEntry> entries;
 
-    public WordData(List<WordEntry> entries) {
+    public WordData(DynamicArray<WordEntry> entries) {
         this.entries = entries;
     }
 
-    public List<WordEntry> getEntries() {
+    public DynamicArray<WordEntry> getEntries() {
         return entries;
     }
 }

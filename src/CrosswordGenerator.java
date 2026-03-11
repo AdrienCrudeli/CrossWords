@@ -1,6 +1,4 @@
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
@@ -11,12 +9,12 @@ public class CrosswordGenerator {
     private final Random random = new Random();
 
     public CrosswordPuzzle generate(WordData wordData) {
-        List<WordEntry> allEntries = wordData.getEntries();
+        DynamicArray<WordEntry> allEntries = wordData.getEntries();
         if (allEntries.isEmpty()) {
             throw new IllegalArgumentException("no words loaded");
         }
 
-        List<WordEntry> candidates = new ArrayList<>();
+        DynamicArray<WordEntry> candidates = new DynamicArray<>();
         for (WordEntry entry : allEntries) {
             int len = entry.getWord().length();
             if (len >= MIN_WORD_LENGTH && len <= MAX_SOLUTION_LENGTH) {
@@ -39,15 +37,15 @@ public class CrosswordGenerator {
         throw new IllegalStateException("could not generate crossword with available words");
     }
 
-    private CrosswordPuzzle tryBuild(WordEntry solutionEntry, List<WordEntry> allEntries) {
+    private CrosswordPuzzle tryBuild(WordEntry solutionEntry, DynamicArray<WordEntry> allEntries) {
         String solution = solutionEntry.getWord();
         Set<String> usedWords = new HashSet<>();
         usedWords.add(solution);
-        List<CrosswordRow> rows = new ArrayList<>();
+        DynamicArray<CrosswordRow> rows = new DynamicArray<>();
 
         for (int i = 0; i < solution.length(); i++) {
             char targetChar = solution.charAt(i);
-            List<WordEntry> possibleRows = new ArrayList<>();
+            DynamicArray<WordEntry> possibleRows = new DynamicArray<>();
 
             for (WordEntry entry : allEntries) {
                 String word = entry.getWord();
