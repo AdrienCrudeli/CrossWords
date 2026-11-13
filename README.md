@@ -9,13 +9,13 @@ and a blanked version with the clues.
 `CrosswordGenerator` picks a candidate solution at random among the words of 3 to 10 letters.
 For each letter of that solution it looks for an unused word containing that letter and places it
 so the two cross there. If a letter cannot be matched, the attempt is abandoned and another
-solution word is tried — up to twice the number of candidates before giving up.
+solution word is tried, up to twice the number of candidates before giving up.
 
 That retry loop matters: whether a crossword can be built at all depends on the overlap between
 the solution's letters and the rest of the list. With a short list, most candidate solutions fail
 and only a few work.
 
-`CrosswordRenderer` produces two views of the same puzzle — the complete grid, and the blanked
+`CrosswordRenderer` produces two views of the same puzzle, the complete grid, and the blanked
 grid with the clue for each row underneath.
 
 ## Running it
